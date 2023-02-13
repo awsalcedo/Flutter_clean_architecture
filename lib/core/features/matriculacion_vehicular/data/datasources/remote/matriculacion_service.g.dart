@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'matriculacion_api.dart';
+part of 'matriculacion_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,9 @@ part of 'matriculacion_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _MatriculacionVehicularApi implements MatriculacionVehicularApi {
-  _MatriculacionVehicularApi(
+class _MatriculacionVehicularApiService
+    implements MatriculacionVehicularApiService {
+  _MatriculacionVehicularApiService(
     this._dio, {
     this.baseUrl,
   });
@@ -19,13 +20,13 @@ class _MatriculacionVehicularApi implements MatriculacionVehicularApi {
   String? baseUrl;
 
   @override
-  Future<InfoVehiculoModel> obtenerInfoVehiculoApi() async {
+  Future<HttpResponse<InfoVehiculoModel>> obtenerInfoVehiculoApi(placa) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<InfoVehiculoModel>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<InfoVehiculoModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -38,7 +39,8 @@ class _MatriculacionVehicularApi implements MatriculacionVehicularApi {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = InfoVehiculoModel.fromJson(_result.data!);
-    return value;
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

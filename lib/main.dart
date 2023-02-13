@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'locator.dart';
+import 'injector.dart';
 
-void main() {
-  setupLocator();
+Future<void> main() async {
+  await initializeDependencies();
   runApp(const SriMovilApp());
 }
 

@@ -47,8 +47,12 @@ dependencies:
   json_annotation: ^4.8.0
   #Functional programing
   dartz: ^0.10.1
+  #Managment state
+  flutter_bloc: ^8.1.2
   #MVVM
   provider: ^6.0.5
+  #SQLite
+  floor: ^1.4.1
 
 dev_dependencies:
   flutter_test:

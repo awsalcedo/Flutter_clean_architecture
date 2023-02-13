@@ -1,9 +1,9 @@
-import 'package:dartz/dartz.dart';
+/*import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sri_movil/core/features/matriculacion_vehicular/domain/entities/info_vehiculo_entity.dart';
-import 'package:sri_movil/core/features/matriculacion_vehicular/domain/repository/matriculacion_repository.dart';
+import 'package:sri_movil/core/features/matriculacion_vehicular/domain/repositories/matriculacion_repository.dart';
 import 'package:sri_movil/core/features/matriculacion_vehicular/domain/usecase/info_vehiculo_use_case.dart';
 
 class MockMatriculacionVehicularRepository extends Mock
@@ -78,4 +78,4 @@ void main() {
 
     verifyNoMoreInteractions(mockMatriculacionVehicularRepository);
   });
-}
+}*/

@@ -37,7 +37,7 @@ class InfoVehiculoEntity extends Equatable {
   final String mensajeMotivoAuto;
   final String placa;
   final String camvCpn;
-  final double cilindraje;
+  final int cilindraje;
   final int fechaCompra;
   final int anioUltimoPago;
   final String marca;
@@ -47,8 +47,8 @@ class InfoVehiculoEntity extends Equatable {
   final String clase;
   final String servicio;
   final String tipoUso;
-  final List<Deuda> deudas;
-  final List<Tasa> tasas;
+  final List<Deuda>? deudas;
+  final List<Tasa>? tasas;
   final String remision;
 
   @override
@@ -74,8 +74,8 @@ class InfoVehiculoEntity extends Equatable {
       clase,
       servicio,
       tipoUso,
-      deudas,
-      tasas,
+      [],
+      [],
       remision
     ];
   }
@@ -88,9 +88,9 @@ class Deuda {
     required this.subtotal,
   });
 
-  String descripcion;
-  List<Rubro> rubros;
-  double subtotal;
+  final String descripcion;
+  final List<Rubro> rubros;
+  final double subtotal;
 }
 
 class Rubro {
