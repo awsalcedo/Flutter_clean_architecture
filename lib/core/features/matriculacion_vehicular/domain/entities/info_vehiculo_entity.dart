@@ -47,8 +47,8 @@ class InfoVehiculoEntity extends Equatable {
   final String clase;
   final String servicio;
   final String tipoUso;
-  final List<Deuda>? deudas;
-  final List<Tasa>? tasas;
+  final List<Deuda> deudas;
+  final List<Tasa> tasas;
   final String remision;
 
   @override
@@ -74,15 +74,15 @@ class InfoVehiculoEntity extends Equatable {
       clase,
       servicio,
       tipoUso,
-      [],
-      [],
+      deudas, //[],
+      tasas, //[],
       remision
     ];
   }
 }
 
-class Deuda {
-  Deuda({
+class Deuda extends Equatable {
+  const Deuda({
     required this.descripcion,
     required this.rubros,
     required this.subtotal,
@@ -91,10 +91,13 @@ class Deuda {
   final String descripcion;
   final List<Rubro> rubros;
   final double subtotal;
+
+  @override
+  List<Object?> get props => [descripcion, rubros, subtotal];
 }
 
-class Rubro {
-  Rubro({
+class Rubro extends Equatable {
+  const Rubro({
     required this.descripcion,
     required this.valor,
     required this.periodoFiscal,
@@ -107,10 +110,14 @@ class Rubro {
   final String periodoFiscal;
   final String beneficiario;
   final List<DetallesRubro> detallesRubro;
+
+  @override
+  List<Object?> get props =>
+      [descripcion, valor, periodoFiscal, beneficiario, detallesRubro];
 }
 
-class DetallesRubro {
-  DetallesRubro({
+class DetallesRubro extends Equatable {
+  const DetallesRubro({
     required this.descripcion,
     required this.anio,
     required this.valor,
@@ -119,10 +126,13 @@ class DetallesRubro {
   final String descripcion;
   final int anio;
   final double valor;
+
+  @override
+  List<Object?> get props => [descripcion, anio, valor];
 }
 
-class Tasa {
-  Tasa({
+class Tasa extends Equatable {
+  const Tasa({
     required this.descripcion,
     required this.deudas,
     required this.subtotal,
@@ -131,4 +141,7 @@ class Tasa {
   final String descripcion;
   final List<Deuda> deudas;
   final double subtotal;
+
+  @override
+  List<Object?> get props => [descripcion, deudas, subtotal];
 }

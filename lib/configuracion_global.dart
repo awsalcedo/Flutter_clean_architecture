@@ -1,6 +1,2 @@
-class ConfiguracionGlobal {
- static const String BASE_URL = "srienlinea.sri.gob.ec/movil-servicios/api/";
- static const String CONTEXTO_API = "/movil-servicios/api/";
- static const String END_POINT_MATRICULACION = "v1.0/matriculacion/valor/";
-
-}
+const String kBaseUrl = "srienlinea.sri.gob.ec/movil-servicios/api/";
+const String kEndPointMatriculacion = "v1.0/matriculacion/valor/";

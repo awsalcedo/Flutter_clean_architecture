@@ -13,7 +13,9 @@ class _MatriculacionVehicularApiService
   _MatriculacionVehicularApiService(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'srienlinea.sri.gob.ec/movil-servicios/api/';
+  }
 
   final Dio _dio;
 

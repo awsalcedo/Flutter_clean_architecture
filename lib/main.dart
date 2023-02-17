@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sri_movil/core/features/matriculacion_vehicular/presentation/info_vehiculo/blocs/info_vehiculo_bloc.dart';
+import 'package:sri_movil/core/routes/app_routes.dart';
+//import 'package:sri_movil/core/features/matriculacion_vehicular/presentation/info_vehiculo/pages/info_vehiculo_page.dart';
 
-import 'injector.dart';
+import 'core/di/injector_container.dart' as di;
 
 Future<void> main() async {
-  await initializeDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.initializeDependencies();
   runApp(const SriMovilApp());
 }
 
@@ -12,16 +17,15 @@ class SriMovilApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('SRI MÓVIL'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => di.injector<InfoVehiculoBloc>())
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Material App',
+          initialRoute: AppRoutes.initialRoute,
+          routes: AppRoutes.routes,
+        ));
   }
 }

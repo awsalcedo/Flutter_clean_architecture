@@ -1,17 +1,20 @@
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
+//import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:sri_movil/core/features/matriculacion_vehicular/data/models/info_vehiculo_model.dart';
+import 'package:sri_movil/configuracion_global.dart';
 
 part 'matriculacion_service.g.dart';
 
-@RestApi()
+@RestApi(baseUrl: kBaseUrl)
 abstract class MatriculacionVehicularApiService {
   factory MatriculacionVehicularApiService(Dio dio,
-      {@Named("BASE_URL") String baseUrl}) = _MatriculacionVehicularApiService;
+      //{@Named("kBaseUrl") String baseUrl}) = _MatriculacionVehicularApiService;
+      {String baseUrl}) = _MatriculacionVehicularApiService;
 
-  @GET("v1.0/matriculacion/valor/")
-  Future<HttpResponse<InfoVehiculoModel>> obtenerInfoVehiculoApi(String placa);
+  @GET("v1.0/matriculacion/valor/{placa}")
+  Future<HttpResponse<InfoVehiculoModel>> obtenerInfoVehiculoApi(
+      @Path("placa") String placa);
 
   /*@GET('/top-headlines')
   Future<HttpResponse<BreakingNewsResponseModel>> getBreakingNewsArticles({

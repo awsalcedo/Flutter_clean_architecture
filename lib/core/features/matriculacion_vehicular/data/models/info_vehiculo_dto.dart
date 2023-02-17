@@ -1,39 +1,17 @@
+// To parse this JSON data, do
+//
+//     final infoVehiculoDto = infoVehiculoDtoFromJson(jsonString);
+
 import 'dart:convert';
 
-import 'package:sri_movil/core/features/matriculacion_vehicular/domain/entities/info_vehiculo_entity.dart';
+InfoVehiculoDto infoVehiculoDtoFromJson(String str) =>
+    InfoVehiculoDto.fromJson(json.decode(str));
 
-InfoVehiculoModel infoVehiculoModelFromJson(String str) =>
-    InfoVehiculoModel.fromJson(json.decode(str));
-
-String infoVehiculoModelToJson(InfoVehiculoModel data) =>
+String infoVehiculoDtoToJson(InfoVehiculoDto data) =>
     json.encode(data.toJson());
 
-class InfoVehiculoModel extends InfoVehiculoEntity {
-  final int fechaUltimaMatricula;
-  final int fechaCaducidadMatricula;
-  final String cantonMatricula;
-  final int fechaRevision;
-  final double total;
-  final String informacion;
-  final String estadoAuto;
-  final String mensajeMotivoAuto;
-  final String placa;
-  final String camvCpn;
-  final int cilindraje;
-  final int fechaCompra;
-  final int anioUltimoPago;
-  final String marca;
-  final String modelo;
-  final int anioModelo;
-  final String paisFabricacion;
-  final String clase;
-  final String servicio;
-  final String tipoUso;
-  final List<DeudaModel> deudas;
-  final List<TasaModel> tasas;
-  final String remision;
-
-  const InfoVehiculoModel({
+class InfoVehiculoDto {
+  InfoVehiculoDto({
     required this.fechaUltimaMatricula,
     required this.fechaCaducidadMatricula,
     required this.cantonMatricula,
@@ -57,33 +35,34 @@ class InfoVehiculoModel extends InfoVehiculoEntity {
     required this.deudas,
     required this.tasas,
     required this.remision,
-  }) : super(
-            fechaUltimaMatricula: fechaUltimaMatricula,
-            fechaCaducidadMatricula: fechaCaducidadMatricula,
-            cantonMatricula: cantonMatricula,
-            fechaRevision: fechaRevision,
-            total: total,
-            informacion: informacion,
-            estadoAuto: estadoAuto,
-            mensajeMotivoAuto: mensajeMotivoAuto,
-            placa: placa,
-            camvCpn: camvCpn,
-            cilindraje: cilindraje,
-            fechaCompra: fechaCompra,
-            anioUltimoPago: anioUltimoPago,
-            marca: marca,
-            modelo: modelo,
-            anioModelo: anioModelo,
-            paisFabricacion: paisFabricacion,
-            clase: clase,
-            servicio: servicio,
-            tipoUso: tipoUso,
-            deudas: deudas,
-            tasas: tasas,
-            remision: remision);
+  });
 
-  factory InfoVehiculoModel.fromJson(Map<String, dynamic> json) =>
-      InfoVehiculoModel(
+  int fechaUltimaMatricula;
+  int fechaCaducidadMatricula;
+  String cantonMatricula;
+  int fechaRevision;
+  double total;
+  String informacion;
+  String estadoAuto;
+  String mensajeMotivoAuto;
+  String placa;
+  String camvCpn;
+  int cilindraje;
+  int fechaCompra;
+  int anioUltimoPago;
+  String marca;
+  String modelo;
+  int anioModelo;
+  String paisFabricacion;
+  String clase;
+  String servicio;
+  String tipoUso;
+  List<Deuda> deudas;
+  List<Tasa> tasas;
+  String remision;
+
+  factory InfoVehiculoDto.fromJson(Map<String, dynamic> json) =>
+      InfoVehiculoDto(
         fechaUltimaMatricula: json["fechaUltimaMatricula"],
         fechaCaducidadMatricula: json["fechaCaducidadMatricula"],
         cantonMatricula: json["cantonMatricula"],
@@ -104,10 +83,8 @@ class InfoVehiculoModel extends InfoVehiculoEntity {
         clase: json["clase"],
         servicio: json["servicio"],
         tipoUso: json["tipoUso"],
-        deudas: List<DeudaModel>.from(
-            json["deudas"].map((x) => DeudaModel.fromJson(x))),
-        tasas: List<TasaModel>.from(
-            json["tasas"].map((x) => TasaModel.fromJson(x))),
+        deudas: List<Deuda>.from(json["deudas"].map((x) => Deuda.fromJson(x))),
+        tasas: List<Tasa>.from(json["tasas"].map((x) => Tasa.fromJson(x))),
         remision: json["remision"],
       );
 
@@ -138,21 +115,20 @@ class InfoVehiculoModel extends InfoVehiculoEntity {
       };
 }
 
-class DeudaModel extends Deuda {
-  const DeudaModel({
+class Deuda {
+  Deuda({
     required this.descripcion,
     required this.rubros,
     required this.subtotal,
-  }) : super(descripcion: descripcion, rubros: rubros, subtotal: subtotal);
+  });
 
-  final String descripcion;
-  final List<RubroModel> rubros;
-  final double subtotal;
+  String descripcion;
+  List<Rubro> rubros;
+  double subtotal;
 
-  factory DeudaModel.fromJson(Map<String, dynamic> json) => DeudaModel(
+  factory Deuda.fromJson(Map<String, dynamic> json) => Deuda(
         descripcion: json["descripcion"],
-        rubros: List<RubroModel>.from(
-            json["rubros"].map((x) => RubroModel.fromJson(x))),
+        rubros: List<Rubro>.from(json["rubros"].map((x) => Rubro.fromJson(x))),
         subtotal: json["subtotal"]?.toDouble(),
       );
 
@@ -163,33 +139,28 @@ class DeudaModel extends Deuda {
       };
 }
 
-class RubroModel extends Rubro {
-  const RubroModel({
+class Rubro {
+  Rubro({
     required this.descripcion,
     required this.valor,
     required this.periodoFiscal,
     required this.beneficiario,
     required this.detallesRubro,
-  }) : super(
-            descripcion: descripcion,
-            valor: valor,
-            periodoFiscal: periodoFiscal,
-            beneficiario: beneficiario,
-            detallesRubro: detallesRubro);
+  });
 
-  final String descripcion;
-  final double valor;
-  final String periodoFiscal;
-  final String beneficiario;
-  final List<DetallesRubroModel> detallesRubro;
+  String descripcion;
+  double valor;
+  String periodoFiscal;
+  String beneficiario;
+  List<DetallesRubro> detallesRubro;
 
-  factory RubroModel.fromJson(Map<String, dynamic> json) => RubroModel(
+  factory Rubro.fromJson(Map<String, dynamic> json) => Rubro(
         descripcion: json["descripcion"],
         valor: json["valor"]?.toDouble(),
         periodoFiscal: json["periodoFiscal"],
         beneficiario: json["beneficiario"],
-        detallesRubro: List<DetallesRubroModel>.from(
-            json["detallesRubro"].map((x) => DetallesRubroModel.fromJson(x))),
+        detallesRubro: List<DetallesRubro>.from(
+            json["detallesRubro"].map((x) => DetallesRubro.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -202,19 +173,18 @@ class RubroModel extends Rubro {
       };
 }
 
-class DetallesRubroModel extends DetallesRubro {
-  const DetallesRubroModel({
+class DetallesRubro {
+  DetallesRubro({
     required this.descripcion,
     required this.anio,
     required this.valor,
-  }) : super(descripcion: descripcion, anio: anio, valor: valor);
+  });
 
-  final String descripcion;
-  final int anio;
-  final double valor;
+  String descripcion;
+  int anio;
+  double valor;
 
-  factory DetallesRubroModel.fromJson(Map<String, dynamic> json) =>
-      DetallesRubroModel(
+  factory DetallesRubro.fromJson(Map<String, dynamic> json) => DetallesRubro(
         descripcion: json["descripcion"],
         anio: json["anio"],
         valor: json["valor"]?.toDouble(),
@@ -227,21 +197,20 @@ class DetallesRubroModel extends DetallesRubro {
       };
 }
 
-class TasaModel extends Tasa {
-  const TasaModel({
+class Tasa {
+  Tasa({
     required this.descripcion,
     required this.deudas,
     required this.subtotal,
-  }) : super(descripcion: descripcion, deudas: deudas, subtotal: subtotal);
+  });
 
-  final String descripcion;
-  final List<DeudaModel> deudas;
-  final double subtotal;
+  String descripcion;
+  List<Deuda> deudas;
+  double subtotal;
 
-  factory TasaModel.fromJson(Map<String, dynamic> json) => TasaModel(
+  factory Tasa.fromJson(Map<String, dynamic> json) => Tasa(
         descripcion: json["descripcion"],
-        deudas: List<DeudaModel>.from(
-            json["deudas"].map((x) => DeudaModel.fromJson(x))),
+        deudas: List<Deuda>.from(json["deudas"].map((x) => Deuda.fromJson(x))),
         subtotal: json["subtotal"]?.toDouble(),
       );
 

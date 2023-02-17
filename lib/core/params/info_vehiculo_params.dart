@@ -1,5 +1,5 @@
 class InfoVehiculoRequestParams {
   final String placa;
 
-  InfoVehiculoRequestParams(this.placa);
+  InfoVehiculoRequestParams({required this.placa});
 }
