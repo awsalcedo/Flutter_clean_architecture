@@ -8,8 +8,7 @@ abstract class InfoVehiculoEvent extends Equatable {
 }
 
 class ObtenerInfoVehiculoEvent extends InfoVehiculoEvent {
-  final InfoVehiculoEntity infoVehiculoEntity;
   final String idVehiculo;
 
-  const ObtenerInfoVehiculoEvent(this.infoVehiculoEntity, this.idVehiculo);
+  const ObtenerInfoVehiculoEvent({required this.idVehiculo});
 }

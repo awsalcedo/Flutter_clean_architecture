@@ -37,7 +37,7 @@ class InfoVehiculoEntity extends Equatable {
   final String mensajeMotivoAuto;
   final String placa;
   final String camvCpn;
-  final int cilindraje;
+  final double cilindraje;
   final int fechaCompra;
   final int anioUltimoPago;
   final String marca;

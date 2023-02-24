@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:sri_movil/core/features/matriculacion_vehicular/domain/entities/info_vehiculo_entity.dart';
 
@@ -19,7 +20,7 @@ class InfoVehiculoModel extends InfoVehiculoEntity {
   final String mensajeMotivoAuto;
   final String placa;
   final String camvCpn;
-  final int cilindraje;
+  final double cilindraje;
   final int fechaCompra;
   final int anioUltimoPago;
   final String marca;
@@ -88,10 +89,12 @@ class InfoVehiculoModel extends InfoVehiculoEntity {
         fechaCaducidadMatricula: json["fechaCaducidadMatricula"],
         cantonMatricula: json["cantonMatricula"],
         fechaRevision: json["fechaRevision"],
-        total: json["total"]?.toDouble(),
+        total: json["total"] is double ? double.parse(json["total"]) : 0.0,
         informacion: json["informacion"],
         estadoAuto: json["estadoAuto"],
-        mensajeMotivoAuto: json["mensajeMotivoAuto"],
+        mensajeMotivoAuto: json["mensajeMotivoAuto"] is String
+            ? json["mensajeMotivoAuto"]
+            : "",
         placa: json["placa"],
         camvCpn: json["camvCpn"],
         cilindraje: json["cilindraje"],
@@ -104,11 +107,19 @@ class InfoVehiculoModel extends InfoVehiculoEntity {
         clase: json["clase"],
         servicio: json["servicio"],
         tipoUso: json["tipoUso"],
-        deudas: List<DeudaModel>.from(
-            json["deudas"].map((x) => DeudaModel.fromJson(x))),
-        tasas: List<TasaModel>.from(
-            json["tasas"].map((x) => TasaModel.fromJson(x))),
-        remision: json["remision"],
+        /*deudas: List<DeudaModel>.from(
+            json["deudas"].map((x) => DeudaModel.fromJson(x))),*/
+        deudas: json["deudas"] is List<DeudaModel>
+            ? List<DeudaModel>.from(
+                json["deudas"].map((x) => DeudaModel.fromJson(x)))
+            : [],
+        /*tasas: List<TasaModel>.from(
+            json["tasas"].map((x) => TasaModel.fromJson(x))),*/
+        tasas: json["tasas"] is List<TasaModel>
+            ? List<TasaModel>.from(
+                json["tasas"].map((x) => TasaModel.fromJson(x)))
+            : [],
+        remision: json["remision"] is String ? json["remision"] : "",
       );
 
   Map<String, dynamic> toJson() => {

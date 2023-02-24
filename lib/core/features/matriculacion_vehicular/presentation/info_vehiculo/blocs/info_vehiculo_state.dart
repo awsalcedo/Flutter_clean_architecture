@@ -9,15 +9,14 @@ abstract class InfoVehiculoState extends Equatable {
   List<Object> get props => [];
 }
 
-class InfoVehiculoInitialState extends InfoVehiculoState {
-  const InfoVehiculoInitialState()
-      : super(idVehiculo: null, infoVehiculoEntidad: null);
-}
+class InfoVehiculoInitialState extends InfoVehiculoState {}
 
-class InfoVehiculoDataState extends InfoVehiculoState {
+class InfoVehiculoLoadingState extends InfoVehiculoState {}
+
+class InfoVehiculoLoaded extends InfoVehiculoState {
   final InfoVehiculoEntity newInfoVehiculoEntity;
 
-  const InfoVehiculoDataState(this.newInfoVehiculoEntity)
+  const InfoVehiculoLoaded(this.newInfoVehiculoEntity)
       : super(infoVehiculoEntidad: newInfoVehiculoEntity);
 }
 

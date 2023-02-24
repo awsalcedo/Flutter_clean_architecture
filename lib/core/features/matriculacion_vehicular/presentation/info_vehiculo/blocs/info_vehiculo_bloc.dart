@@ -9,13 +9,15 @@ part 'info_vehiculo_event.dart';
 part 'info_vehiculo_state.dart';
 
 class InfoVehiculoBloc extends Bloc<InfoVehiculoEvent, InfoVehiculoState> {
-  final InfoVehiculoUseCase _infoVehiculoUseCase;
-  InfoVehiculoBloc({required InfoVehiculoUseCase infoVehiculoUseCase})
-      : _infoVehiculoUseCase = infoVehiculoUseCase,
-        super(const InfoVehiculoInitialState()) {
+  final InfoVehiculoUseCase infoVehiculoUseCase;
+
+  InfoVehiculoBloc({required this.infoVehiculoUseCase})
+      : super(InfoVehiculoInitialState()) {
     on<ObtenerInfoVehiculoEvent>((event, emit) async {
+      emit(InfoVehiculoLoadingState());
+
       final failureOrInfoVehiculo =
-          await _infoVehiculoUseCase(idVehiculo: event.idVehiculo);
+          await infoVehiculoUseCase(idVehiculo: event.idVehiculo);
       emit(_eitherInfoVehiculoOrErrorState(failureOrInfoVehiculo));
     });
   }
@@ -24,7 +26,7 @@ class InfoVehiculoBloc extends Bloc<InfoVehiculoEvent, InfoVehiculoState> {
       Either<Failure, InfoVehiculoEntity> failureOrInfoVehiculo) {
     return failureOrInfoVehiculo.fold(
         (failure) => InfoVehiculoError(_mapFailureToMessage(failure)),
-        (infoVehiculo) => InfoVehiculoDataState(infoVehiculo));
+        (infoVehiculo) => InfoVehiculoLoaded(infoVehiculo));
   }
 
   String _mapFailureToMessage(Failure failure) {
