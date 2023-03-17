@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "568431479228",
+    "firebase_url": "https://sri-movil-nueva.firebaseio.com",
+    "project_id": "sri-movil-nueva",
+    "storage_bucket": "sri-movil-nueva.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568431479228:android:cb26c3dd983b4b26c603b9",
+        "android_client_info": {
+          "package_name": "ec.gob.sri.movil.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568431479228-gr1pkhq1cni808kfkfh7i2tonqo4egj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7duVwr4OpCM3ArnXSAv681GUqJ0-Zgfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568431479228-gr1pkhq1cni808kfkfh7i2tonqo4egj2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "568431479228-a9ig0p9b4h2601kodeh0ima1fa3o7i7e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ec.gob.sri.movil.app",
+                "app_store_id": "804091906"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

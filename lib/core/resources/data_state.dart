@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+/*import 'package:dio/dio.dart';
 
 abstract class DataState<T> {
   final T? data;
@@ -13,4 +13,4 @@ class DataSuccess<T> extends DataState<T> {
 
 class DataFailed<T> extends DataState<T> {
   const DataFailed(DioError error) : super(error: error);
-}
+}*/
